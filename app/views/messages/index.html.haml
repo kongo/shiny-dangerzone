@@ -6,9 +6,10 @@
 - else
   - @messages.each do |m|
     %div.message
-      = m.name
-      = m.email
+      = m.person.name
+      = m.person.email
       %br
       %b= m.subject
       %br
       = m.contents
+      %hr

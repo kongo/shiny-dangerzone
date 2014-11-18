@@ -13,7 +13,7 @@ class MessageInfo
   validates :name, :email, :subject, :contents, presence: true
   validates_email_format_of :email, message: 'does not appear to be an email address'
 
-  def initialize(params)
+  def initialize(params = {})
     params.slice(*PUBLIC_ATTRS).each { |n, v| send "#{n}=", v }
   end
 
