@@ -4,19 +4,22 @@ class MessagesController < ApplicationController
   end
 
   def new
-    @message = Message.new
+    @message_info = MessageInfo.new
   end
 
   def create
-    @message = Message.new message_params
-    render(:new) && return unless @message.valid?
+    @message_info = MessageInfo.new message_params
 
-    @message.write_to_file_storage
-    flash[:success] = 'Message sent'
-    redirect_to root_path
+    if @message_info.valid?
+      @message_info.save
+      flash[:success] = 'Message sent'
+      redirect_to root_path
+    else
+      render(:new)
+    end
   end
 
   def message_params
-    params.require(:message).permit(Message::PUBLIC_ATTRS)
+    params.require(:message_info).permit(MessageInfo::PUBLIC_ATTRS)
   end
 end

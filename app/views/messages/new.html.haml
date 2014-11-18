@@ -1,10 +1,10 @@
 %h1 New Message
 
-= form_for @message do |f|
+= form_for @message_info, url: { controller: "messages", action: "create" } do |f|
 
-  - if @message.errors.any?
+  - if @message_info.errors.any?
     %ul.errors
-      - @message.errors.full_messages.each do |e|
+      - @message_info.errors.full_messages.each do |e|
         %li= e.inspect
 
   = f.label :name
