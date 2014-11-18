@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118183255) do
+ActiveRecord::Schema.define(version: 20141118193645) do
 
   create_table "messages", force: true do |t|
-    t.string   "name"
-    t.string   "email"
     t.string   "subject"
     t.text     "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "person_id"
   end
+
+  add_index "messages", ["person_id"], name: "index_messages_on_person_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "name"
