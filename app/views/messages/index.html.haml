@@ -1,0 +1,13 @@
+%h1 Messages
+
+- unless @messages.any?
+  %h2 not a single yet
+- else
+  - @messages.each do |m|
+    %div.message
+      = m.name
+      = m.email
+      %br
+      %b= m.subject
+      %br
+      = m.contents
